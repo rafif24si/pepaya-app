@@ -1,47 +1,11 @@
-// src/components/sections/DetectSection.jsx
-import { useRef, useState } from "react";
-
-// ✅ Update this URL every time ngrok restarts
-const API_URL = "https://circle-grandma-operate.ngrok-free.dev";
-
-const CLASS_INFO = {
-  Matang: {
-    label: "RIPE",
-    shelfLife: "3-5 Days",
-    brix: "12.5%",
-    quality: "Optimal",
-    color: "bg-primary-container",
-  },
-  Mentah: {
-    label: "UNRIPE",
-    shelfLife: "7-10 Days",
-    brix: "5.2%",
-    quality: "Not Ready",
-    color: "bg-secondary",
-  },
-  Busuk: {
-    label: "ROTTEN",
-    shelfLife: "0 Days",
-    brix: "N/A",
-    quality: "Discard",
-    color: "bg-tertiary",
-  },
-  BukanPepaya: {
-    label: "INVALID",
-    shelfLife: "N/A",
-    brix: "N/A",
-    quality: "Retake Photo",
-    color: "bg-surface-tint",
-  },
-};
+import { useState, useRef } from "react";
 
 export default function DetectSection() {
-  const fileInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -49,7 +13,6 @@ export default function DetectSection() {
       setFile(selectedFile);
       setPreview(URL.createObjectURL(selectedFile));
       setResult(null);
-      setError(null);
     }
   };
 
@@ -61,42 +24,19 @@ export default function DetectSection() {
   const handleUpload = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!file) return alert("Please select an image first!");
+    if (!file) return alert("Pilih gambar terlebih dahulu!");
 
     setLoading(true);
-    setError(null);
-    setResult(null);
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await fetch(`${API_URL}/predict`, {
-        method: "POST",
-        body: formData,
+    setTimeout(() => {
+      setResult({
+        status: "RIPE",
+        confidence: "98.4%",
+        shelfLife: "3-5 Days",
+        brix: "12.5%",
+        quality: "Optimal",
       });
-
-      const json = await response.json();
-
-      if (json.success) {
-        const info = CLASS_INFO[json.class_name] || CLASS_INFO["BukanPepaya"];
-        setResult({
-          status: info.label,
-          confidence: `${json.confidence}%`,
-          shelfLife: info.shelfLife,
-          brix: info.brix,
-          quality: info.quality,
-          color: info.color,
-          allScores: json.all_scores,
-        });
-      } else {
-        setError(json.error || "Prediction failed, please try again.");
-      }
-    } catch (err) {
-      setError("Unable to connect to server. Please make sure the backend is running.");
-    } finally {
       setLoading(false);
-    }
+    }, 2000);
   };
 
   return (
@@ -104,14 +44,17 @@ export default function DetectSection() {
       className="hero-gradient min-h-[819px] flex flex-col items-center justify-center px-gutter py-xl relative overflow-hidden"
       id="detect"
     >
+      {/* Decorative blur blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-primary-container/10 rounded-full blur-[100px] -z-10"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-secondary/10 rounded-full blur-[100px] -z-10"></div>
 
       <div className="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-lg items-center">
-        {/* Left Column */}
+        {/* Kolom Kiri: Teks & Tombol */}
         <div className="lg:col-span-5 space-y-md">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 text-primary font-label-md border border-primary-container/20">
-            <span className="material-symbols-outlined text-sm">auto_awesome</span>
+            <span className="material-symbols-outlined text-sm">
+              auto_awesome
+            </span>
             Precision Agriculture
           </div>
           <h1 className="font-display-lg text-display-lg text-on-surface md:text-headline-lg-mobile lg:text-display-lg">
@@ -120,11 +63,17 @@ export default function DetectSection() {
               Ripeness Detection
             </span>
           </h1>
-          <p className="text-lg leading-relaxed text-on-surface-variant" style={{ maxWidth: "500px" }}>
+
+          {/* ✅ Paragraf yang sudah diperbaiki */}
+          <p
+            className="text-lg leading-relaxed text-on-surface-variant"
+            style={{ maxWidth: "500px" }}
+          >
             Upload a cross-section image of a papaya to instantly analyze its
             ripeness classification, confidence score, and estimated shelf life
             using our advanced AI model.
           </p>
+
           <div className="flex gap-4 pt-4">
             <button
               onClick={triggerFileInput}
@@ -139,9 +88,9 @@ export default function DetectSection() {
           </div>
         </div>
 
-        {/* Right Column */}
+        {/* Kolom Kanan: Upload Area + Hasil Deteksi */}
         <div className="lg:col-span-7">
-          {/* Upload Area */}
+          {/* Glassmorphism Upload Area */}
           <div className="glass-panel rounded-2xl p-md shadow-level-3 relative overflow-hidden group border border-outline-variant/50">
             <div className="absolute inset-0 bg-white/40 group-hover:bg-white/50 transition-colors duration-500"></div>
             <div
@@ -157,10 +106,17 @@ export default function DetectSection() {
               />
 
               {preview ? (
-                <img src={preview} alt="Preview" className="h-48 object-contain rounded-lg mb-4" />
+                <img
+                  src={preview}
+                  alt="Preview"
+                  className="h-48 object-contain rounded-lg mb-4"
+                />
               ) : (
                 <div className="w-20 h-20 bg-primary-container/10 rounded-full flex items-center justify-center mb-6 shadow-sm">
-                  <span className="material-symbols-outlined text-primary-container text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span
+                    className="material-symbols-outlined text-primary-container text-4xl"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
                     add_photo_alternate
                   </span>
                 </div>
@@ -191,72 +147,57 @@ export default function DetectSection() {
             </div>
           </div>
 
-          {/* Detection Results */}
+          {/* Hasil Deteksi */}
           <div className="mt-6">
-            {error && (
-              <div className="mb-4 p-4 bg-tertiary/10 border border-tertiary/30 rounded-xl text-tertiary font-body-md flex items-center gap-2">
-                <span className="material-symbols-outlined">error</span>
-                {error}
-              </div>
-            )}
-
-            <div className={`glass-panel rounded-2xl p-6 shadow-level-3 border border-primary-container/30 ${!result && !loading ? "animate-pulse" : ""}`}>
+            <div
+              className={`glass-panel rounded-2xl p-6 shadow-level-3 border border-primary-container/30 ${
+                !result && !loading ? "animate-pulse" : ""
+              }`}
+            >
               <div className="flex justify-between items-center mb-4">
-                <h4 className="font-headline-md text-on-surface">Detection Results</h4>
-                <span className={`${result ? result.color : "bg-primary-container"} text-white px-4 py-1 rounded-full font-label-md text-sm shadow-sm`}>
-                  {result ? result.status : "AWAITING"}
+                <h4 className="font-headline-md text-on-surface">
+                  Detection Results
+                </h4>
+                <span className="bg-primary-container text-white px-4 py-1 rounded-full font-label-md text-sm shadow-sm">
+                  {result ? result.status : "RIPE"}
                 </span>
               </div>
-
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-3 bg-primary-container/5 rounded-lg border border-primary-container/10">
-                  <p className="text-xs text-on-surface-variant font-label-md uppercase mb-1">Confidence Score</p>
+                  <p className="text-xs text-on-surface-variant font-label-md uppercase mb-1">
+                    Confidence Score
+                  </p>
                   <p className="text-2xl font-display-lg text-primary">
-                    {result ? result.confidence : "—"}
+                    {result ? result.confidence : "98.4%"}
                   </p>
                 </div>
                 <div className="p-3 bg-secondary/5 rounded-lg border border-secondary/10">
-                  <p className="text-xs text-on-surface-variant font-label-md uppercase mb-1">Shelf Life</p>
+                  <p className="text-xs text-on-surface-variant font-label-md uppercase mb-1">
+                    Shelf Life
+                  </p>
                   <p className="text-2xl font-display-lg text-secondary">
-                    {result ? result.shelfLife : "—"}
+                    {result ? result.shelfLife : "3-5 Days"}
                   </p>
                 </div>
               </div>
-
               <div className="mt-4 space-y-3">
                 <div className="flex justify-between items-center border-b border-outline-variant/20 pb-2">
-                  <span className="text-body-md text-on-surface-variant">Sugar Content (Brix)</span>
+                  <span className="text-body-md text-on-surface-variant">
+                    Sugar Content (Brix)
+                  </span>
                   <span className="font-mono-data text-primary font-bold">
-                    {result ? result.brix : "—"}
+                    {result ? result.brix : "12.5%"}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-body-md text-on-surface-variant">Surface Quality</span>
+                  <span className="text-body-md text-on-surface-variant">
+                    Surface Quality
+                  </span>
                   <span className="font-mono-data text-secondary font-bold">
-                    {result ? result.quality : "—"}
+                    {result ? result.quality : "Optimal"}
                   </span>
                 </div>
               </div>
-
-              {result?.allScores && (
-                <div className="mt-4 pt-4 border-t border-outline-variant/20">
-                  <p className="text-xs text-on-surface-variant font-label-md uppercase mb-2">All Class Scores</p>
-                  <div className="space-y-2">
-                    {Object.entries(result.allScores).map(([cls, score]) => (
-                      <div key={cls} className="flex items-center gap-2">
-                        <span className="text-xs text-on-surface-variant w-24">{cls}</span>
-                        <div className="flex-1 bg-surface-variant rounded-full h-2">
-                          <div
-                            className="bg-primary-container h-2 rounded-full transition-all duration-500"
-                            style={{ width: `${score}%` }}
-                          />
-                        </div>
-                        <span className="font-mono-data text-xs text-primary w-12 text-right">{score}%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
