@@ -2,12 +2,12 @@
 @config "../tailwind.config.js";
 
 html {
-  font-size: 14px; /* Scales down the entire UI by 12.5% to fix the 'zoomed in' look */
+  font-size: 12px; /* Scales down the entire UI by 25% to fix the OS-level zoom */
 }
 
 @media (min-width: 1536px) {
   html {
-    font-size: 16px; /* Normal size for very large 2K/4K screens */
+    font-size: 14px; /* Slightly larger on very large screens */
   }
 }
 

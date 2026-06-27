@@ -36,11 +36,11 @@ export default function HistorySection() {
   ];
 
   return (
-    <section className="bg-[#1a1a1a] dark:bg-[#121212] py-24 px-6 md:px-12 relative overflow-hidden transition-colors duration-500" id="history">
+    <section className="bg-[#1a1a1a] py-16 px-6 md:px-10 relative overflow-hidden transition-colors duration-500" id="history">
       {/* Background ambient glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/10 dark:bg-[#ffb786]/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-[1440px] mx-auto w-full relative z-10">
+      <div className="max-w-4xl mx-auto w-full relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
@@ -50,14 +50,14 @@ export default function HistorySection() {
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t.liveScan}</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-display-lg font-bold text-white mb-5">
+            <h2 className="text-2xl md:text-3xl font-display-lg font-bold text-white mb-3">
               {t.title}
             </h2>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
               {t.desc}
             </p>
           </div>
-          <button className="px-6 py-3 rounded-full border border-white/20 text-white font-semibold flex items-center gap-2 hover:bg-white hover:text-[#1a1a1a] dark:hover:bg-white/10 dark:hover:text-white hover:scale-105 transition-all duration-300 group">
+          <button className="px-5 py-2.5 text-sm rounded-full border border-white/20 text-white font-semibold flex items-center gap-2 hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 group">
             {t.viewArchive} <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </button>
         </div>
@@ -67,11 +67,11 @@ export default function HistorySection() {
           {historyItems.map((item, index) => (
             <div 
               key={index} 
-              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] overflow-hidden flex flex-col group hover:-translate-y-3 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 cursor-pointer"
+              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:-translate-y-2 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 cursor-pointer"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Image Section */}
-              <div className="h-56 relative bg-[#222] overflow-hidden">
+              <div className="h-44 relative bg-[#222] overflow-hidden">
                 <img
                   alt={item.status}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
@@ -88,7 +88,7 @@ export default function HistorySection() {
               </div>
 
               {/* Info Section */}
-              <div className="p-6 md:p-8 flex flex-col gap-5">
+              <div className="p-5 md:p-6 flex flex-col gap-4">
                 <div className="flex justify-between items-center border-b border-white/10 pb-4 group-hover:border-white/20 transition-colors">
                   <span className="text-gray-400 text-sm font-bold uppercase tracking-wider">{item.id}</span>
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/20 transition-colors">
@@ -97,14 +97,14 @@ export default function HistorySection() {
                 </div>
                 
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300 font-medium">{t.brixLevel}</span>
-                  <span className="text-white font-mono font-bold text-lg">{item.brix}</span>
+                  <span className="text-gray-300 text-sm font-medium">{t.brixLevel}</span>
+                  <span className="text-white font-mono font-bold text-base">{item.brix}</span>
                 </div>
 
                 <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-gray-300 font-medium">{t.confidence}</span>
-                    <span className="text-[#964900] dark:text-[#ffb786] font-mono font-bold text-lg">{item.confidence}</span>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-gray-300 text-sm font-medium">{t.confidence}</span>
+                    <span className="text-[#964900] dark:text-[#ffb786] font-mono font-bold text-base">{item.confidence}</span>
                   </div>
                   {/* Progress bar */}
                   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden relative">

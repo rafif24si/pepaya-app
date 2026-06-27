@@ -49,7 +49,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 w-full z-50 flex justify-center px-4 pt-4 transition-all duration-500">
       <nav
-        className={`w-full max-w-5xl transition-all duration-500 ${scrolled
+        className={`w-full max-w-4xl transition-all duration-500 ${scrolled
             ? "bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border-white/60 dark:border-white/10"
             : "bg-white/60 dark:bg-[#121212]/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-white/40 dark:border-white/5"
           } rounded-full border-[1.5px]`}
