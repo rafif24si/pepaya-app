@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
+import { useApp } from "../context/AppContext";
+import { translations } from "../utils/translations";
 
 export default function Navbar() {
+  const { lang, toggleLang } = useApp();
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("detect");
+  const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const t = translations[lang].nav;
 
   const navLinks = [
-    { id: "detect", label: "Detect", icon: "scanner" },
-    { id: "education", label: "Education", icon: "menu_book" },
-    { id: "history", label: "History", icon: "monitoring" },
+    { id: "home", label: t.home },
+    { id: "detect", label: t.detect },
+    { id: "education", label: t.education },
+    { id: "history", label: t.history },
   ];
 
   useEffect(() => {
@@ -41,97 +47,89 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-2xl border-b border-gray-200/50 shadow-2xl shadow-black/5"
-          : "bg-white/50 backdrop-blur-xl border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-20">
+    <div className="fixed top-0 w-full z-50 flex justify-center px-4 pt-6 transition-all duration-500">
+      <nav
+        className={`w-full max-w-5xl transition-all duration-500 ${scrolled
+            ? "bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border-white/60 dark:border-white/10"
+            : "bg-white/60 dark:bg-[#121212]/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-white/40 dark:border-white/5"
+          } rounded-full border-[1.5px]`}
+      >
+        <div className="flex justify-between items-center h-16 md:h-[72px] px-6 md:px-8">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <span
-              className="material-symbols-outlined text-emerald-600 text-3xl"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              eco
-            </span>
-            <span className="text-xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-              PapayaSense AI
+          <div className="flex items-center cursor-pointer mr-8">
+            <span className="text-2xl md:text-[28px] font-display-lg font-black text-[#964900] tracking-tight">
+              PapayaDetection
             </span>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map(({ id, label, icon }) => (
+          <div className="hidden md:flex flex-1 items-center justify-center gap-8 mr-8">
+            {navLinks.map(({ id, label }) => (
               <button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`relative px-5 py-2.5 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
-                  activeSection === id
-                    ? "text-emerald-700 bg-emerald-50"
-                    : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                }`}
+                className={`relative px-1 py-2 font-body-md text-sm md:text-base font-semibold transition-all duration-300 group ${activeSection === id
+                    ? "text-primary dark:text-[#ffb786]"
+                    : "text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white"
+                  }`}
               >
-                <span className="material-symbols-outlined text-lg">{icon}</span>
                 {label}
-                {activeSection === id && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></span>
-                )}
+                {/* Smooth animated underline */}
+                <span className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-full bg-primary transition-all duration-300 ${activeSection === id ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100"}`}></span>
               </button>
             ))}
           </div>
 
-          {/* Actions */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all duration-300 hover:-translate-y-0.5">
-              Get Started
-            </button>
-            <button className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <span className="material-symbols-outlined text-gray-600">person</span>
+          {/* Actions: Language */}
+          <div className="hidden md:flex items-center gap-3">
+            <button 
+              onClick={toggleLang}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200 font-bold text-xs uppercase transition-colors"
+            >
+              {lang}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center"
+            className="md:hidden w-10 h-10 rounded-full bg-white/80 flex items-center justify-center text-on-surface hover:text-primary transition-colors backdrop-blur-sm"
           >
-            <span className="material-symbols-outlined text-gray-700">
+            <span className="material-symbols-outlined">
               {mobileMenuOpen ? "close" : "menu"}
             </span>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-2xl border-t border-gray-100 shadow-2xl">
+        <div
+          className={`md:hidden absolute top-full mt-2 left-0 w-full bg-white/95 dark:bg-[#1a1a1a]/95 backdrop-blur-2xl rounded-3xl border border-white/50 dark:border-white/10 shadow-2xl transition-all duration-300 overflow-hidden ${mobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+        >
           <div className="px-6 py-4 space-y-2">
-            {navLinks.map(({ id, label, icon }) => (
+            {navLinks.map(({ id, label }) => (
               <button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`w-full px-5 py-3 rounded-xl font-bold text-left transition-all flex items-center gap-3 ${
-                  activeSection === id
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
+                className={`w-full px-5 py-3 rounded-xl font-label-md text-left transition-all ${activeSection === id
+                    ? "bg-primary/10 text-primary dark:text-[#ffb786] dark:bg-white/10"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5"
+                  }`}
               >
-                <span className="material-symbols-outlined">{icon}</span>
                 {label}
               </button>
             ))}
-            <div className="pt-4 border-t border-gray-100">
-              <button className="w-full px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl font-bold shadow-lg">
-                Get Started
-              </button>
+            
+            <div className="pt-4 mt-2 border-t border-gray-200 dark:border-white/10 flex justify-center gap-4">
+               <button 
+                 onClick={toggleLang}
+                 className="flex-1 py-3 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-200 font-bold text-sm uppercase"
+               >
+                 Language: {lang === 'en' ? 'English' : 'Indonesia'}
+               </button>
             </div>
           </div>
         </div>
-      )}
-    </nav>
+      </nav>
+    </div>
   );
 }

@@ -1,115 +1,95 @@
-// src/components/sections/EducationSection.jsx
+import { useApp } from "../../context/AppContext";
+import { translations } from "../../utils/translations";
+
 export default function EducationSection() {
+  const { lang } = useApp();
+  const t = translations[lang].education;
+  
   const stages = [
     {
-      id: "mentah",
-      label: "Fase 1: Mentah",
-      badge: "UNRIPE",
-      gradient: "from-secondary to-secondary-fixed-dim",
-      shadow: "hover:shadow-secondary/30",
-      description:
-        "Pepaya mentah memiliki kulit berwarna hijau pekat dan daging buah yang keras serta berwarna pucat. Kandungan gulanya (Brix) masih sangat rendah sehingga rasanya belum manis.",
-      timeInfo: "Waktu menuju matang: 7-10 hari",
-      timeDesc: "Dibutuhkan sekitar 7 hingga 10 hari penyimpanan pada suhu ruang agar buah mencapai tingkat kematangan optimal.",
-      icon: "eco",
-      // Ganti nama file ini sesuai dengan yang ada di folder public/img kamu
-      imgSrc: "/img/mth.jpg", 
-      imgPlaceholder: false,
+      ...t.stages[0],
+      imgSrc: "/img/mth.jpg",
+      gradient: "from-emerald-500 to-emerald-700",
+      badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200"
     },
     {
-      id: "matang",
-      label: "Fase 2: Matang",
-      badge: "RIPE",
-      gradient: "from-primary-container to-tertiary-container",
-      shadow: "hover:shadow-primary-container/30",
-      description:
-        "Ditandai dengan kulit yang menguning atau jingga, daging buah yang empuk, kemerahan, dan berair. Kandungan gula dan profil rasa berada pada tingkat paling optimal untuk dikonsumsi.",
-      timeInfo: "Masa simpan (Shelf life): 3-5 hari",
-      timeDesc: "Setelah matang, pepaya idealnya dipanen atau dikonsumsi dalam waktu 3-5 hari sebelum teksturnya menjadi terlalu lembek.",
-      icon: "task_alt",
-      // Ganti nama file ini sesuai dengan yang ada di folder public/img kamu
+      ...t.stages[1],
       imgSrc: "/img/mtg.jpg",
-      imgPlaceholder: false,
+      gradient: "from-[#964900] to-[#f57c00]",
+      badgeColor: "bg-orange-50 text-[#964900] border-orange-200"
     },
     {
-      id: "busuk",
-      label: "Fase 3: Busuk",
-      badge: "ROTTEN",
-      gradient: "from-tertiary to-error",
-      shadow: "hover:shadow-tertiary/30",
-      description:
-        "Menunjukkan tanda kerusakan fisik seperti bintik hitam berlebih, daging yang terlalu lembek (mushy), berair, dan mulai ditumbuhi jamur. Aroma fermentasi menyengat akan tercium dan tidak layak konsumsi.",
-      timeInfo: "Waktu pembusukan: 5-7 hari",
-      timeDesc: "Jika dibiarkan pada suhu ruang tanpa pendingin setelah masa matang terlewati, buah akan membusuk total dalam 5-7 hari.",
-      icon: "coronavirus",
-      // Ganti nama file ini sesuai dengan yang ada di folder public/img kamu
+      ...t.stages[2],
       imgSrc: "/img/b60.jpg", 
-      imgPlaceholder: false, // Diubah menjadi false agar gambar ditampilkan
+      gradient: "from-rose-600 to-rose-800",
+      badgeColor: "bg-rose-50 text-rose-700 border-rose-200"
     },
   ];
 
   return (
-    <section className="px-gutter py-xl bg-surface-container-lowest relative overflow-hidden" id="education">
-      {/* Dekorasi Background */}
-      <div className="absolute top-0 right-0 w-[30vw] h-[30vw] bg-surface-variant/40 rounded-full blur-[120px] -z-10"></div>
-      
-      <div className="max-w-container-max mx-auto w-full">
-        <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface font-label-md">
-            <span className="material-symbols-outlined text-sm text-primary-container">menu_book</span>
-            Pusat Pengetahuan
+    <section className="bg-gradient-to-b from-white to-[#fffdfa] py-24 px-6 md:px-12 relative overflow-hidden" id="education">
+      {/* Background Dots & Decorations */}
+      <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-gradient-to-r from-transparent via-[#964900]/5 to-transparent blur-[100px] pointer-events-none"></div>
+
+      <div className="max-w-[1440px] mx-auto w-full relative z-10">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10" data-aos="fade-up">
+          <div className="max-w-3xl">
+            <h2 className="text-4xl md:text-5xl font-display-lg font-extrabold text-[#1a1a1a] mb-5 tracking-tight uppercase">
+              {t.title}
+            </h2>
+            <p className="text-gray-700 text-lg md:text-xl font-medium leading-relaxed">
+              {t.desc}
+            </p>
           </div>
-          <h2 className="font-display-lg text-[40px] text-on-surface leading-tight">
-            Siklus Kematangan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-secondary">Pepaya</span>
-          </h2>
-          <p className="font-body-lg text-on-surface-variant">
-            Pahami karakteristik visual dan estimasi waktu dari setiap fase perkembangan buah pepaya untuk memaksimalkan kualitas panen.
-          </p>
+          <button className="text-[#964900] font-bold flex items-center gap-2 hover:text-[#1a1a1a] transition-all whitespace-nowrap group bg-white border border-[#964900]/20 hover:border-[#964900]/50 shadow-sm hover:shadow-md px-6 py-3 rounded-full">
+            {t.viewEncyclopedia} <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {stages.map((stage) => (
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 relative z-10">
+          {stages.map((stage, index) => (
             <div
               key={stage.id}
-              className={`bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-outline-variant/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${stage.shadow} group flex flex-col`}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+              className="bg-white/90 backdrop-blur-xl rounded-[40px] overflow-hidden flex flex-col h-full shadow-[0_15px_40px_rgba(150,73,0,0.08)] border border-white hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(150,73,0,0.15)] transition-all duration-500 group"
             >
-              {/* Gambar / Visual */}
-              <div className="h-56 relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                {stage.imgPlaceholder ? (
-                  <div className={`w-full h-full bg-gradient-to-br ${stage.gradient} flex items-center justify-center opacity-80`}>
-                    <span className="material-symbols-outlined text-white/50 text-8xl group-hover:scale-110 transition-transform duration-500">
-                      {stage.icon}
-                    </span>
-                  </div>
-                ) : (
-                  <img
-                    alt={stage.label}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    src={stage.imgSrc}
-                  />
-                )}
-                <div className={`absolute top-4 right-4 bg-gradient-to-r ${stage.gradient} text-white px-4 py-1.5 rounded-full font-label-md text-xs shadow-lg z-20 font-bold tracking-wider`}>
-                  {stage.badge}
-                </div>
+              {/* Image Container with strict 4:3 aspect ratio */}
+              <div className="aspect-[4/3] w-full relative bg-gray-50 overflow-hidden rounded-t-[40px]">
+                <img
+                  alt={stage.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  src={stage.imgSrc}
+                  onError={(e) => {
+                    e.target.src = 'https://images.unsplash.com/photo-1517282009859-f000eca3bca2?q=80&w=600&auto=format&fit=crop';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
-              {/* Konten Text */}
-              <div className="p-8 flex-grow flex flex-col">
-                <h3 className="font-headline-md text-2xl text-on-surface mb-3 flex items-center gap-2">
-                  {stage.label}
+              {/* Text Content */}
+              <div className="p-8 md:p-10 flex flex-col flex-grow bg-white/50">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 text-[10px] font-bold tracking-[0.2em] mb-4 w-fit border border-gray-200 group-hover:bg-[#964900] group-hover:text-white transition-colors duration-300">
+                  {stage.badge}
+                </div>
+
+                <h3 className="text-3xl font-display-lg font-black text-[#1a1a1a] mb-4 tracking-tight uppercase">
+                  {stage.title}
                 </h3>
-                <p className="font-body-md text-on-surface-variant mb-6 flex-grow leading-relaxed">
+                <p className="text-gray-700 text-[15px] leading-relaxed mb-8 flex-grow font-semibold">
                   {stage.description}
                 </p>
-                
-                {/* Time Estimation Card */}
-                <div className="bg-surface-container-low rounded-2xl p-4 border border-outline-variant/20">
-                  <div className={`flex items-center gap-2 font-label-md mb-2 bg-gradient-to-r ${stage.gradient} bg-clip-text text-transparent`}>
-                    <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>schedule</span>
+
+                {/* Timeline Info Card - Bento Style */}
+                <div className="mt-auto bg-white/80 rounded-2xl p-5 border border-gray-200 group-hover:bg-[#fffcf7] group-hover:border-[#964900]/30 transition-colors duration-300 flex flex-col gap-2 shadow-sm">
+                  <div className={`flex items-center gap-2 font-black bg-gradient-to-r ${stage.gradient} bg-clip-text text-transparent uppercase tracking-tight`}>
+                    <span className="material-symbols-outlined text-xl">schedule</span>
                     {stage.timeInfo}
                   </div>
-                  <p className="text-sm text-on-surface-variant/80">
+                  <p className="text-[14px] text-gray-600 leading-relaxed font-medium">
                     {stage.timeDesc}
                   </p>
                 </div>

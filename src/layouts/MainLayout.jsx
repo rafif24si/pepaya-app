@@ -1,11 +1,28 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function MainLayout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  // Re-trigger animations when route changes
+  useEffect(() => {
+    AOS.refresh();
+  }, [location.pathname]);
+
   return (
-    // Class pembungkus ini sekarang 100% sama dengan tag <body> di HTML asli kamu
-    <div className="bg-surface text-on-surface font-body-md antialiased pt-24 min-h-screen flex flex-col">
+    <div className="bg-[#fdfaf7] text-on-surface font-body-md antialiased min-h-screen flex flex-col transition-colors duration-500 overflow-x-hidden">
       <Navbar />
       <main className="flex-grow w-full">
         <Outlet />
