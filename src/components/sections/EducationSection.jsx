@@ -27,14 +27,14 @@ export default function EducationSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white to-[#fffdfa] pt-20 pb-8 px-6 md:px-10 relative overflow-hidden" id="education">
+    <section className="bg-gradient-to-b from-white to-[#fffdfa] min-h-screen pt-28 pb-8 px-6 md:px-10 relative overflow-hidden flex flex-col justify-center" id="education">
       {/* Background Dots & Decorations */}
       <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-gradient-to-r from-transparent via-[#964900]/5 to-transparent blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10" data-aos="fade-up">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 relative z-10" data-aos="fade-up">
           <div className="max-w-3xl">
             <h2 className="text-xl md:text-2xl font-display-lg font-extrabold text-[#1a1a1a] mb-2 tracking-tight uppercase">
               {t.title}
@@ -43,13 +43,10 @@ export default function EducationSection() {
               {t.desc}
             </p>
           </div>
-          <button className="text-[#964900] font-bold flex items-center gap-2 hover:text-[#1a1a1a] transition-all whitespace-nowrap group bg-white border border-[#964900]/20 hover:border-[#964900]/50 shadow-sm hover:shadow-md px-6 py-3 rounded-full">
-            {t.viewEncyclopedia} <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
-          </button>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 relative z-10">
           {stages.map((stage, index) => (
             <div
               key={stage.id}
@@ -71,8 +68,8 @@ export default function EducationSection() {
               </div>
 
               {/* Text Content */}
-              <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
-                <div className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 text-[10px] font-bold tracking-[0.2em] mb-4 w-fit border border-gray-200 group-hover:bg-[#964900] group-hover:text-white transition-colors duration-300">
+              <div className="p-5 md:p-6 flex flex-col flex-grow relative z-10 bg-white">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 text-[10px] font-bold tracking-[0.2em] mb-3 w-fit border border-gray-200 group-hover:bg-[#964900] group-hover:text-white transition-colors duration-300">
                   {stage.badge}
                 </div>
 
@@ -84,12 +81,12 @@ export default function EducationSection() {
                 </p>
 
                 {/* Timeline Info Card - Bento Style */}
-                <div className="mt-auto bg-white/80 rounded-2xl p-5 border border-gray-200 group-hover:bg-[#fffcf7] group-hover:border-[#964900]/30 transition-colors duration-300 flex flex-col gap-2 shadow-sm">
+                <div className="mt-auto bg-white/80 rounded-2xl p-4 border border-gray-200 group-hover:bg-[#fffcf7] group-hover:border-[#964900]/30 transition-colors duration-300 flex flex-col gap-2 shadow-sm">
                   <div className={`flex items-center gap-2 font-black bg-gradient-to-r ${stage.gradient} bg-clip-text text-transparent uppercase tracking-tight`}>
                     <span className="material-symbols-outlined text-xl">schedule</span>
                     {stage.timeInfo}
                   </div>
-                  <p className="text-[14px] text-gray-600 leading-relaxed font-medium">
+                  <p className="text-xs text-gray-600 leading-relaxed font-medium">
                     {stage.timeDesc}
                   </p>
                 </div>

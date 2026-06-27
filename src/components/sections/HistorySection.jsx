@@ -36,7 +36,7 @@ export default function HistorySection() {
   ];
 
   return (
-    <section className="bg-[#1a1a1a] py-16 px-6 md:px-10 relative overflow-hidden transition-colors duration-500" id="history">
+    <section className="bg-[#1a1a1a] min-h-screen py-16 px-6 md:px-10 relative overflow-hidden transition-colors duration-500 flex flex-col justify-center" id="history">
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/10 rounded-full blur-[120px] pointer-events-none"></div>
 

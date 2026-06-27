@@ -46,6 +46,7 @@ export default function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+
   return (
     <div className="fixed top-0 w-full z-50 flex justify-center px-4 pt-4 transition-all duration-500">
       <nav

@@ -27,7 +27,7 @@ export default function HeroSection() {
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#964900]/8 rounded-full blur-[100px] -z-10 animate-pulse"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#a0f399]/10 rounded-full blur-[130px] -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-      <div className="max-w-5xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-center relative z-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-14 items-center relative z-10">
         {/* Left: Text */}
         <div className="space-y-5" data-aos="fade-up">
           {/* Badge */}
@@ -36,51 +36,51 @@ export default function HeroSection() {
             <span className="text-[11px] font-bold text-gray-600 uppercase tracking-widest">AI-Powered Agronomy</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-display-lg font-bold leading-[1.15] text-[#1a1a1a] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-display-lg font-bold leading-[1.1] text-[#1a1a1a] tracking-tight">
             <span className="text-[#964900]">{t.titleLine1}</span><br/>
             {t.titleLine2}<br/>
             {t.titleLine3}
           </h1>
 
-          <p className="text-sm sm:text-base text-gray-600 max-w-[480px] leading-relaxed font-medium">
+          <p className="text-base sm:text-[17px] lg:text-lg text-gray-600 max-w-[500px] leading-relaxed font-medium">
             {t.desc}
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="flex flex-wrap gap-4 pt-3">
             <button 
               onClick={triggerScrollToCore}
-              className="px-6 py-3 bg-[#964900] text-white rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-lg shadow-[#964900]/25 hover:-translate-y-0.5 duration-300"
+              className="px-8 py-3.5 bg-[#964900] text-white rounded-full font-bold text-base flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-lg shadow-[#964900]/25 hover:-translate-y-0.5 duration-300"
             >
-              {t.startBtn} <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              {t.startBtn} <span className="material-symbols-outlined text-base">arrow_forward</span>
             </button>
-            <button className="px-6 py-3 bg-white/70 backdrop-blur-md border border-[#964900]/20 text-gray-700 rounded-full font-bold text-sm hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-sm">
+            <button className="px-8 py-3.5 bg-white/70 backdrop-blur-md border border-[#964900]/20 text-gray-700 rounded-full font-bold text-base hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-sm">
               {t.methodologyBtn}
             </button>
           </div>
 
           {/* Stats Row */}
-          <div className="flex gap-6 pt-2 border-t border-gray-100 mt-4">
+          <div className="flex flex-wrap gap-6 sm:gap-8 pt-4 border-t border-gray-100 mt-6">
             <div>
-              <p className="text-xl font-black text-[#964900]">99.4%</p>
-              <p className="text-xs text-gray-500 font-medium">Accuracy</p>
+              <p className="text-2xl lg:text-3xl font-black text-[#964900]">99.4%</p>
+              <p className="text-sm text-gray-500 font-medium">Accuracy</p>
             </div>
-            <div className="w-px bg-gray-200"></div>
+            <div className="hidden sm:block w-px bg-gray-200"></div>
             <div>
-              <p className="text-xl font-black text-[#1a1a1a]">3</p>
-              <p className="text-xs text-gray-500 font-medium">Ripeness Stages</p>
+              <p className="text-2xl lg:text-3xl font-black text-[#1a1a1a]">3</p>
+              <p className="text-sm text-gray-500 font-medium">Ripeness Stages</p>
             </div>
-            <div className="w-px bg-gray-200"></div>
+            <div className="hidden sm:block w-px bg-gray-200"></div>
             <div>
-              <p className="text-xl font-black text-[#1a1a1a]">Real-time</p>
-              <p className="text-xs text-gray-500 font-medium">Detection</p>
+              <p className="text-2xl lg:text-3xl font-black text-[#1a1a1a]">Real-time</p>
+              <p className="text-sm text-gray-500 font-medium">Detection</p>
             </div>
           </div>
         </div>
         
         {/* Right: Image */}
-        <div className="relative px-2 md:px-0" data-aos="zoom-in" data-aos-delay="200">
+        <div className="relative px-2 md:px-0 flex justify-end" data-aos="zoom-in" data-aos-delay="200">
            <div 
-             className={`w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] rounded-3xl overflow-hidden shadow-[0_15px_40px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-4 border-white ${isAnimating ? 'scale-95 rotate-1 blur-[2px]' : 'hover:scale-[1.015] hover:shadow-[0_20px_50px_rgba(150,73,0,0.2)]'}`}
+             className={`w-full aspect-[4/5] max-w-[420px] lg:max-w-[460px] mx-auto lg:mr-0 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-[6px] border-white ${isAnimating ? 'scale-95 rotate-1 blur-[2px]' : 'hover:scale-[1.015] hover:shadow-[0_25px_60px_rgba(150,73,0,0.2)]'}`}
              onClick={handleImageClick}
            >
               <img 
