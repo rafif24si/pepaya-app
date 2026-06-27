@@ -91,7 +91,7 @@ export default function DetectSection() {
   };
 
   return (
-    <section className="bg-[#fdfaf7] py-16 px-6 md:px-10 relative overflow-hidden" id="detect">
+    <section className="bg-[#fdfaf7] pt-24 pb-16 px-6 md:px-10 relative overflow-hidden" id="detect">
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/5 rounded-full blur-[120px] pointer-events-none"></div>
       
@@ -119,7 +119,7 @@ export default function DetectSection() {
               
               <div 
                 onClick={triggerFileInput}
-                className={`w-full aspect-[4/5] md:aspect-[16/10] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[24px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
+                className={`w-full aspect-[16/9] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[24px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
               >
                 {preview ? (
                   <div className="relative w-full h-full p-2 flex flex-col items-center justify-center">

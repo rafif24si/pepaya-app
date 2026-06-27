@@ -1,16 +1,6 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
-html {
-  font-size: 12px; /* Scales down the entire UI by 25% to fix the OS-level zoom */
-}
-
-@media (min-width: 1536px) {
-  html {
-    font-size: 14px; /* Slightly larger on very large screens */
-  }
-}
-
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);

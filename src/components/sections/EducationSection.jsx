@@ -27,7 +27,7 @@ export default function EducationSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white to-[#fffdfa] py-16 px-6 md:px-10 relative overflow-hidden" id="education">
+    <section className="bg-gradient-to-b from-white to-[#fffdfa] pt-24 pb-16 px-6 md:px-10 relative overflow-hidden" id="education">
       {/* Background Dots & Decorations */}
       <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-gradient-to-r from-transparent via-[#964900]/5 to-transparent blur-[100px] pointer-events-none"></div>
@@ -57,8 +57,8 @@ export default function EducationSection() {
               data-aos-delay={index * 150}
               className="bg-white/90 backdrop-blur-xl rounded-3xl overflow-hidden flex flex-col h-full shadow-[0_15px_40px_rgba(150,73,0,0.08)] border border-white hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(150,73,0,0.15)] transition-all duration-500 group"
             >
-              {/* Image Container with strict 4:3 aspect ratio */}
-              <div className="aspect-[4/3] w-full relative bg-gray-50 overflow-hidden rounded-t-3xl">
+              {/* Image Container with strict 16:9 aspect ratio */}
+              <div className="aspect-[16/9] w-full relative bg-gray-50 overflow-hidden rounded-t-3xl">
                 <img
                   alt={stage.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"

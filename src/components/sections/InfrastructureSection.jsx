@@ -1,7 +1,7 @@
 export default function InfrastructureSection() {
   return (
-    <section className="bg-gradient-to-b from-[#f5f5f5] to-white py-24 px-6 md:px-12" id="infrastructure">
-      <div className="max-w-[1440px] mx-auto w-full">
+    <section className="bg-gradient-to-b from-[#f5f5f5] to-white pt-24 pb-16 px-6 md:px-12" id="infrastructure">
+      <div className="max-w-5xl mx-auto w-full">
         {/* Header */}
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-display-lg font-bold text-[#1a1a1a] mb-4 text-center md:text-left">
