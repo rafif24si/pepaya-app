@@ -105,10 +105,10 @@ export default function DetectSection() {
             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.9)] relative z-10"></div>
             <span className="text-[12px] font-bold text-gray-800 uppercase tracking-widest relative z-10">{t.systemReady}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-display-lg font-black text-[#1a1a1a] mb-5 tracking-tight uppercase text-center">
+          <h2 className="text-3xl md:text-4xl font-display-lg font-black text-[#1a1a1a] mb-4 tracking-tight uppercase text-center">
             {t.title.split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#964900] to-[#f57c00]">{t.title.split(' ').slice(1).join(' ')}</span>
           </h2>
-          <p className="text-gray-800 text-lg md:text-xl max-w-[700px] text-center leading-relaxed font-semibold">{t.subtitle}</p>
+          <p className="text-gray-800 text-base md:text-lg max-w-[700px] text-center leading-relaxed font-semibold">{t.subtitle}</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 relative z-10">

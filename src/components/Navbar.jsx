@@ -57,7 +57,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 md:h-[72px] px-6 md:px-8">
           {/* Logo */}
           <div className="flex items-center cursor-pointer mr-8">
-            <span className="text-2xl md:text-[28px] font-display-lg font-black text-[#964900] tracking-tight">
+            <span className="text-lg md:text-xl font-display-lg font-black text-[#964900] tracking-tight">
               PapayaDetection
             </span>
           </div>

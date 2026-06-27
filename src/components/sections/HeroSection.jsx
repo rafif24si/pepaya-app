@@ -30,22 +30,22 @@ export default function HeroSection() {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-20 items-center relative z-10">
         {/* Left: Text */}
         <div className="space-y-6 lg:space-y-8">
-          <h1 className="text-6xl md:text-7xl lg:text-[84px] font-display-lg font-bold leading-[1.05] text-[#1a1a1a] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display-lg font-bold leading-[1.08] text-[#1a1a1a] tracking-tight">
             <span className="text-[#964900]">{t.titleLine1}</span><br/>
             {t.titleLine2}<br/>
             {t.titleLine3}
           </h1>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-[600px] leading-relaxed mt-8 font-medium">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-[600px] leading-relaxed mt-6 font-medium">
             {t.desc}
           </p>
           <div className="flex flex-wrap gap-5 pt-6">
             <button 
               onClick={triggerScrollToCore}
-              className="px-10 py-5 bg-[#964900] text-white rounded-full font-bold text-lg flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-xl shadow-[#964900]/30 hover:-translate-y-1 hover:scale-105 duration-300 border-2 border-transparent"
+              className="px-7 py-4 bg-[#964900] text-white rounded-full font-bold text-sm sm:text-base flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-xl shadow-[#964900]/30 hover:-translate-y-1 hover:scale-105 duration-300 border-2 border-transparent"
             >
               {t.startBtn} <span className="material-symbols-outlined text-base">arrow_forward</span>
             </button>
-            <button className="px-10 py-5 bg-white/70 backdrop-blur-md border-2 border-[#964900]/20 text-gray-800 rounded-full font-bold text-lg hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-md">
+            <button className="px-7 py-4 bg-white/70 backdrop-blur-md border-2 border-[#964900]/20 text-gray-800 rounded-full font-bold text-sm sm:text-base hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-md">
               {t.methodologyBtn}
             </button>
           </div>
@@ -53,7 +53,7 @@ export default function HeroSection() {
         
         <div className="relative mt-16 lg:mt-0 px-4 md:px-0" data-aos="zoom-in" data-aos-delay="200">
            <div 
-             className={`w-full aspect-square md:aspect-auto md:h-[680px] lg:h-[740px] rounded-[48px] overflow-hidden shadow-[0_30px_70px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-8 border-white ${isAnimating ? 'scale-95 rotate-2 shadow-inner blur-[2px]' : 'hover:scale-[1.02] hover:shadow-[0_40px_80px_rgba(150,73,0,0.25)]'}`}
+             className={`w-full aspect-square md:aspect-auto md:h-[480px] lg:h-[560px] xl:h-[620px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-4 border-white ${isAnimating ? 'scale-95 rotate-2 shadow-inner blur-[2px]' : 'hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(150,73,0,0.22)]'}`}
              onClick={handleImageClick}
            >
               <img 

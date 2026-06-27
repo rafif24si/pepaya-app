@@ -36,10 +36,10 @@ export default function EducationSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10" data-aos="fade-up">
           <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-display-lg font-extrabold text-[#1a1a1a] mb-5 tracking-tight uppercase">
+            <h2 className="text-3xl md:text-4xl font-display-lg font-extrabold text-[#1a1a1a] mb-4 tracking-tight uppercase">
               {t.title}
             </h2>
-            <p className="text-gray-700 text-lg md:text-xl font-medium leading-relaxed">
+            <p className="text-gray-700 text-base md:text-lg font-medium leading-relaxed">
               {t.desc}
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function EducationSection() {
                   {stage.badge}
                 </div>
 
-                <h3 className="text-3xl font-display-lg font-black text-[#1a1a1a] mb-4 tracking-tight uppercase">
+                <h3 className="text-2xl font-display-lg font-black text-[#1a1a1a] mb-3 tracking-tight uppercase">
                   {stage.title}
                 </h3>
                 <p className="text-gray-700 text-[15px] leading-relaxed mb-8 flex-grow font-semibold">
