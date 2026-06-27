@@ -91,35 +91,35 @@ export default function DetectSection() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-[#fffdfa] to-white py-24 px-6 md:px-12 relative overflow-hidden" id="detect">
+    <section className="bg-[#fdfaf7] py-16 px-6 md:px-10 relative overflow-hidden" id="detect">
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/5 rounded-full blur-[120px] pointer-events-none"></div>
       
       {/* Polka dot background */}
       <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none"></div>
       
-      <div className="max-w-[1440px] mx-auto w-full relative z-10">
+      <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* Header */}
         <div className="flex flex-col items-center justify-center mb-16 relative z-10" data-aos="fade-up">
           <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white shadow-sm border border-[#964900]/10 mb-8 hover:shadow-md transition-shadow">
             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.9)] relative z-10"></div>
             <span className="text-[12px] font-bold text-gray-800 uppercase tracking-widest relative z-10">{t.systemReady}</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-display-lg font-black text-[#1a1a1a] mb-4 tracking-tight uppercase text-center">
+          <h2 className="text-2xl md:text-3xl font-display-lg font-black text-[#1a1a1a] mb-3 tracking-tight uppercase text-center">
             {t.title.split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#964900] to-[#f57c00]">{t.title.split(' ').slice(1).join(' ')}</span>
           </h2>
-          <p className="text-gray-800 text-base md:text-lg max-w-[700px] text-center leading-relaxed font-semibold">{t.subtitle}</p>
+          <p className="text-gray-700 text-sm md:text-base max-w-[600px] text-center leading-relaxed font-medium">{t.subtitle}</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 relative z-10">
           {/* Left: Upload Card */}
           <div className="lg:col-span-3 flex flex-col gap-6" data-aos="fade-right" data-aos-delay="100">
-            <div className="bg-white/95 backdrop-blur-3xl border border-white shadow-[0_20px_60px_rgba(150,73,0,0.1)] rounded-[48px] p-6 flex flex-col items-center justify-center overflow-hidden relative transition-all duration-700 hover:shadow-[0_30px_70px_rgba(150,73,0,0.15)] hover:-translate-y-1 group">
+            <div className="bg-white/95 backdrop-blur-3xl border border-white shadow-[0_20px_60px_rgba(150,73,0,0.1)] rounded-[32px] p-6 flex flex-col items-center justify-center overflow-hidden relative transition-all duration-700 hover:shadow-[0_30px_70px_rgba(150,73,0,0.15)] hover:-translate-y-1 group">
               <input type="file" accept="image/png, image/jpeg" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
               
               <div 
                 onClick={triggerFileInput}
-                className={`w-full aspect-[4/5] md:aspect-[16/10] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[36px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
+                className={`w-full aspect-[4/5] md:aspect-[16/10] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[24px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
               >
                 {preview ? (
                   <div className="relative w-full h-full p-2 flex flex-col items-center justify-center">
@@ -167,8 +167,8 @@ export default function DetectSection() {
           
           {/* Right Column: Results */}
           <div className="lg:col-span-2 flex flex-col h-full" data-aos="fade-left" data-aos-delay="200">
-            <div className="bg-white/95 backdrop-blur-3xl border border-white shadow-[0_20px_60px_rgba(150,73,0,0.1)] rounded-[48px] p-8 flex-grow flex flex-col justify-center transition-all duration-700 hover:shadow-[0_30px_70px_rgba(150,73,0,0.15)] hover:-translate-y-1">
-              <div className="flex justify-between items-center mb-10 border-b border-gray-100 pb-6">
+            <div className="bg-white/95 backdrop-blur-3xl border border-white shadow-[0_20px_60px_rgba(150,73,0,0.1)] rounded-[32px] p-6 lg:p-8 flex-grow flex flex-col justify-center transition-all duration-700 hover:shadow-[0_30px_70px_rgba(150,73,0,0.15)] hover:-translate-y-1">
+              <div className="flex justify-between items-center mb-8 border-b border-gray-100 pb-5">
                 <h3 className="font-extrabold text-[#1a1a1a] text-xl uppercase tracking-widest">{t.analysisProfile}</h3>
               </div>
               

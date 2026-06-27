@@ -27,19 +27,19 @@ export default function EducationSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white to-[#fffdfa] py-24 px-6 md:px-12 relative overflow-hidden" id="education">
+    <section className="bg-gradient-to-b from-white to-[#fffdfa] py-16 px-6 md:px-10 relative overflow-hidden" id="education">
       {/* Background Dots & Decorations */}
       <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-gradient-to-r from-transparent via-[#964900]/5 to-transparent blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-[1440px] mx-auto w-full relative z-10">
+      <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10" data-aos="fade-up">
           <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-display-lg font-extrabold text-[#1a1a1a] mb-4 tracking-tight uppercase">
+            <h2 className="text-2xl md:text-3xl font-display-lg font-extrabold text-[#1a1a1a] mb-3 tracking-tight uppercase">
               {t.title}
             </h2>
-            <p className="text-gray-700 text-base md:text-lg font-medium leading-relaxed">
+            <p className="text-gray-600 text-sm md:text-base font-medium leading-relaxed">
               {t.desc}
             </p>
           </div>
@@ -55,10 +55,10 @@ export default function EducationSection() {
               key={stage.id}
               data-aos="fade-up"
               data-aos-delay={index * 150}
-              className="bg-white/90 backdrop-blur-xl rounded-[40px] overflow-hidden flex flex-col h-full shadow-[0_15px_40px_rgba(150,73,0,0.08)] border border-white hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(150,73,0,0.15)] transition-all duration-500 group"
+              className="bg-white/90 backdrop-blur-xl rounded-3xl overflow-hidden flex flex-col h-full shadow-[0_15px_40px_rgba(150,73,0,0.08)] border border-white hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(150,73,0,0.15)] transition-all duration-500 group"
             >
               {/* Image Container with strict 4:3 aspect ratio */}
-              <div className="aspect-[4/3] w-full relative bg-gray-50 overflow-hidden rounded-t-[40px]">
+              <div className="aspect-[4/3] w-full relative bg-gray-50 overflow-hidden rounded-t-3xl">
                 <img
                   alt={stage.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
@@ -71,7 +71,7 @@ export default function EducationSection() {
               </div>
 
               {/* Text Content */}
-              <div className="p-8 md:p-10 flex flex-col flex-grow bg-white/50">
+              <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 text-[10px] font-bold tracking-[0.2em] mb-4 w-fit border border-gray-200 group-hover:bg-[#964900] group-hover:text-white transition-colors duration-300">
                   {stage.badge}
                 </div>

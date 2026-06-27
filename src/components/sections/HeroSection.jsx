@@ -19,63 +19,89 @@ export default function HeroSection() {
   return (
     <section 
       id="home" 
-      className="w-full min-h-screen flex flex-col items-center justify-center pt-28 pb-20 relative overflow-hidden bg-[#fffdfa]"
+      className="w-full min-h-screen flex flex-col items-center justify-center pt-24 pb-16 relative overflow-hidden bg-[#fffdfa]"
     >
       {/* Background Dots */}
       <div className="absolute inset-0 bg-dots opacity-60 pointer-events-none"></div>
-      {/* Cool animated background shapes for the whole hero / top section */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#964900]/10 rounded-full blur-[120px] -z-10 animate-pulse"></div>
-      <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-[#a0f399]/15 rounded-full blur-[150px] -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      {/* Animated background shapes */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#964900]/8 rounded-full blur-[100px] -z-10 animate-pulse"></div>
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#a0f399]/10 rounded-full blur-[130px] -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-20 items-center relative z-10">
+      <div className="max-w-5xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-center relative z-10">
         {/* Left: Text */}
-        <div className="space-y-6 lg:space-y-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display-lg font-bold leading-[1.08] text-[#1a1a1a] tracking-tight">
+        <div className="space-y-5" data-aos="fade-up">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-[#964900]/10">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className="text-[11px] font-bold text-gray-600 uppercase tracking-widest">AI-Powered Agronomy</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-display-lg font-bold leading-[1.15] text-[#1a1a1a] tracking-tight">
             <span className="text-[#964900]">{t.titleLine1}</span><br/>
             {t.titleLine2}<br/>
             {t.titleLine3}
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-[600px] leading-relaxed mt-6 font-medium">
+
+          <p className="text-sm sm:text-base text-gray-600 max-w-[480px] leading-relaxed font-medium">
             {t.desc}
           </p>
-          <div className="flex flex-wrap gap-5 pt-6">
+
+          <div className="flex flex-wrap gap-3 pt-2">
             <button 
               onClick={triggerScrollToCore}
-              className="px-7 py-4 bg-[#964900] text-white rounded-full font-bold text-sm sm:text-base flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-xl shadow-[#964900]/30 hover:-translate-y-1 hover:scale-105 duration-300 border-2 border-transparent"
+              className="px-6 py-3 bg-[#964900] text-white rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#803d00] transition-colors shadow-lg shadow-[#964900]/25 hover:-translate-y-0.5 duration-300"
             >
-              {t.startBtn} <span className="material-symbols-outlined text-base">arrow_forward</span>
+              {t.startBtn} <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
-            <button className="px-7 py-4 bg-white/70 backdrop-blur-md border-2 border-[#964900]/20 text-gray-800 rounded-full font-bold text-sm sm:text-base hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-md">
+            <button className="px-6 py-3 bg-white/70 backdrop-blur-md border border-[#964900]/20 text-gray-700 rounded-full font-bold text-sm hover:border-[#964900] hover:text-[#964900] hover:bg-white transition-all duration-300 shadow-sm">
               {t.methodologyBtn}
             </button>
           </div>
+
+          {/* Stats Row */}
+          <div className="flex gap-6 pt-2 border-t border-gray-100 mt-4">
+            <div>
+              <p className="text-xl font-black text-[#964900]">99.4%</p>
+              <p className="text-xs text-gray-500 font-medium">Accuracy</p>
+            </div>
+            <div className="w-px bg-gray-200"></div>
+            <div>
+              <p className="text-xl font-black text-[#1a1a1a]">3</p>
+              <p className="text-xs text-gray-500 font-medium">Ripeness Stages</p>
+            </div>
+            <div className="w-px bg-gray-200"></div>
+            <div>
+              <p className="text-xl font-black text-[#1a1a1a]">Real-time</p>
+              <p className="text-xs text-gray-500 font-medium">Detection</p>
+            </div>
+          </div>
         </div>
         
-        <div className="relative mt-16 lg:mt-0 px-4 md:px-0" data-aos="zoom-in" data-aos-delay="200">
+        {/* Right: Image */}
+        <div className="relative px-2 md:px-0" data-aos="zoom-in" data-aos-delay="200">
            <div 
-             className={`w-full aspect-square md:aspect-auto md:h-[480px] lg:h-[560px] xl:h-[620px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-4 border-white ${isAnimating ? 'scale-95 rotate-2 shadow-inner blur-[2px]' : 'hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(150,73,0,0.22)]'}`}
+             className={`w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] rounded-3xl overflow-hidden shadow-[0_15px_40px_rgba(150,73,0,0.15)] relative cursor-pointer transition-all duration-300 ease-in-out border-4 border-white ${isAnimating ? 'scale-95 rotate-1 blur-[2px]' : 'hover:scale-[1.015] hover:shadow-[0_20px_50px_rgba(150,73,0,0.2)]'}`}
              onClick={handleImageClick}
            >
               <img 
                 src="/img/pohon1.jpg" 
                 alt="Papaya Farm" 
-                className="w-full h-full object-cover transform scale-[1.05]"
+                className="w-full h-full object-cover"
               />
-              
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#964900]/40 to-transparent mix-blend-multiply opacity-80 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#964900]/30 to-transparent mix-blend-multiply opacity-80 pointer-events-none"></div>
            </div>
          </div>
       </div>
       
-      {/* Cool Separator / Scrolling Marquee */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/70 backdrop-blur-md border-y border-[#964900]/10 py-3.5 z-20 shadow-[0_-5px_20px_rgba(150,73,0,0.05)]">
+      {/* Scrolling Marquee Separator */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/70 backdrop-blur-md border-y border-[#964900]/10 py-3 z-20">
         <div className="flex w-[200%] animate-marquee">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex items-center justify-around w-1/2 px-4 shrink-0">
               {['AI-POWERED ANALYSIS', '99.4% PRECISION', 'REAL-TIME DETECTION', 'AGRONOMIC PROFILING'].map((text, j) => (
-                <div key={j} className="flex items-center gap-4 mx-6">
-                  <span className="text-[#964900] text-lg">✦</span>
-                  <span className="text-xs font-bold tracking-[0.2em] text-gray-700">{text}</span>
+                <div key={j} className="flex items-center gap-3 mx-6">
+                  <span className="text-[#964900] text-sm">✦</span>
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-gray-600">{text}</span>
                 </div>
               ))}
             </div>
