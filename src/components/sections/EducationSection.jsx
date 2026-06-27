@@ -27,7 +27,7 @@ export default function EducationSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white to-[#fffdfa] pt-24 pb-16 px-6 md:px-10 relative overflow-hidden" id="education">
+    <section className="bg-gradient-to-b from-white to-[#fffdfa] pt-20 pb-8 px-6 md:px-10 relative overflow-hidden" id="education">
       {/* Background Dots & Decorations */}
       <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-gradient-to-r from-transparent via-[#964900]/5 to-transparent blur-[100px] pointer-events-none"></div>
@@ -36,10 +36,10 @@ export default function EducationSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10" data-aos="fade-up">
           <div className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-display-lg font-extrabold text-[#1a1a1a] mb-3 tracking-tight uppercase">
+            <h2 className="text-xl md:text-2xl font-display-lg font-extrabold text-[#1a1a1a] mb-2 tracking-tight uppercase">
               {t.title}
             </h2>
-            <p className="text-gray-600 text-sm md:text-base font-medium leading-relaxed">
+            <p className="text-gray-600 text-xs md:text-sm font-medium leading-relaxed">
               {t.desc}
             </p>
           </div>
@@ -76,10 +76,10 @@ export default function EducationSection() {
                   {stage.badge}
                 </div>
 
-                <h3 className="text-2xl font-display-lg font-black text-[#1a1a1a] mb-3 tracking-tight uppercase">
+                <h3 className="font-display-lg text-base md:text-lg font-black text-[#1a1a1a] mb-2 uppercase tracking-tight">
                   {stage.title}
                 </h3>
-                <p className="text-gray-700 text-[15px] leading-relaxed mb-8 flex-grow font-semibold">
+                <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-4 flex-grow font-medium">
                   {stage.description}
                 </p>
 

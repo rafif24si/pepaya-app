@@ -91,7 +91,7 @@ export default function DetectSection() {
   };
 
   return (
-    <section className="bg-[#fdfaf7] pt-24 pb-16 px-6 md:px-10 relative overflow-hidden" id="detect">
+    <section className="bg-[#fdfaf7] pt-20 pb-8 px-6 md:px-10 relative overflow-hidden" id="detect">
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#964900]/5 rounded-full blur-[120px] pointer-events-none"></div>
       
@@ -100,8 +100,8 @@ export default function DetectSection() {
       
       <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* Header */}
-        <div className="flex flex-col items-center justify-center mb-16 relative z-10" data-aos="fade-up">
-          <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white shadow-sm border border-[#964900]/10 mb-8 hover:shadow-md transition-shadow">
+        <div className="flex flex-col items-center justify-center mb-8 relative z-10" data-aos="fade-up">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white shadow-sm border border-[#964900]/10 mb-4 hover:shadow-md transition-shadow">
             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.9)] relative z-10"></div>
             <span className="text-[12px] font-bold text-gray-800 uppercase tracking-widest relative z-10">{t.systemReady}</span>
           </div>
@@ -119,7 +119,7 @@ export default function DetectSection() {
               
               <div 
                 onClick={triggerFileInput}
-                className={`w-full aspect-[16/9] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[24px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
+                className={`w-full aspect-[21/9] border-2 border-dashed ${file ? 'border-[#964900] bg-gradient-to-br from-[#964900]/10 to-[#f57c00]/5' : 'border-[#964900]/30 bg-gradient-to-b from-gray-50/50 to-white hover:from-[#fffdfa] hover:to-[#fff9f0] hover:border-[#964900]/50'} rounded-[24px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 relative overflow-hidden`}
               >
                 {preview ? (
                   <div className="relative w-full h-full p-2 flex flex-col items-center justify-center">
@@ -139,12 +139,12 @@ export default function DetectSection() {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center p-8 text-center w-full max-w-[400px]">
-                    <div className="w-24 h-24 bg-white rounded-full shadow-[0_10px_30px_rgba(150,73,0,0.1)] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 border border-white relative">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full shadow-[0_10px_30px_rgba(150,73,0,0.1)] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 border border-white relative">
                       <div className="absolute inset-0 rounded-full border border-[#964900]/30 scale-[1.2] opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                      <span className="material-symbols-outlined text-5xl text-[#964900]/40 group-hover:text-[#964900] transition-colors">cloud_upload</span>
+                      <span className="material-symbols-outlined text-4xl text-[#964900]/40 group-hover:text-[#964900] transition-colors">cloud_upload</span>
                     </div>
-                    <h3 className="text-3xl font-display-lg font-black text-[#964900] mb-3">Drop crop data here</h3>
-                    <p className="text-base text-gray-700 font-medium w-full">Upload high-resolution images of papaya samples to begin analysis.</p>
+                    <h3 className="text-xl md:text-2xl font-display-lg font-black text-[#964900] mb-2">Drop crop data here</h3>
+                    <p className="text-sm md:text-base text-gray-700 font-medium w-full">Upload high-resolution images of papaya samples to begin analysis.</p>
                   </div>
                 )}
               </div>
@@ -173,11 +173,11 @@ export default function DetectSection() {
               </div>
               
               {!result && !loading ? (
-                <div className="flex flex-col items-center justify-center text-center h-full min-h-[350px]">
-                  <div className="w-24 h-24 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center mb-8 shadow-inner">
-                    <span className="material-symbols-outlined text-5xl text-gray-300">psychiatry</span>
+                <div className="flex flex-col items-center justify-center text-center h-full min-h-[220px]">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center mb-4 shadow-inner">
+                    <span className="material-symbols-outlined text-3xl md:text-4xl text-gray-300">psychiatry</span>
                   </div>
-                  <p className="text-gray-500 font-bold text-sm px-4">
+                  <p className="text-gray-500 font-bold text-xs md:text-sm px-4">
                     {t.defaultDesc}
                   </p>
                 </div>
