@@ -3,7 +3,7 @@ import { useApp } from "../../context/AppContext";
 import { translations } from "../../utils/translations";
 
 export default function DetectSection() {
-  const { lang } = useApp();
+  const { lang, addScanToHistory } = useApp();
   const t = translations[lang].detect;
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -78,16 +78,96 @@ export default function DetectSection() {
     if (!file) return alert(t.uploadAlert);
 
     setLoading(true);
-    setTimeout(() => {
-      setResult({
-        status: "RIPE",
-        confidence: "98.4%",
-        shelfLife: "3-5 Days",
-        brix: "12.5%",
-        quality: "Optimal",
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("https://farrap-pepaya-detection.hf.space/predict", {
+        method: "POST",
+        body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error("Gagal terhubung ke server");
+      }
+
+      const data = await response.json();
+
+      // Ganti dari data.success ke format FastAPI
+      if (data.predicted_class) {
+        let rawClass = String(data.predicted_class).toLowerCase().trim();
+        let mappedStatus = "not_pepaya";
+
+        if (rawClass.includes("mentah")) {
+          mappedStatus = "unripe";
+        } else if (rawClass.includes("matang")) {
+          mappedStatus = "ripe";
+        } else if (rawClass.includes("busuk")) {
+          mappedStatus = "rotten";
+        } else if (rawClass.includes("bukanpepaya")) {
+          mappedStatus = "not_pepaya";
+        }
+
+        const finalStatusTitle = categoryInfo[mappedStatus]?.title || data.predicted_class;
+        const confidenceVal = `${data.confidence}%`;
+
+        setResult({
+          status: mappedStatus,
+          confidence: confidenceVal,
+          shelfLife: "N/A",
+          brix: "N/A",
+          quality: data.predicted_class,
+        });
+
+        // Simpan ke cache (LocalStorage) menggunakan fungsi dari context
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            // Resize gambar supaya LocalStorage (max 5MB) tidak langsung error
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const maxSize = 300; 
+            let width = img.width;
+            let height = img.height;
+            if (width > height && width > maxSize) {
+              height *= maxSize / width;
+              width = maxSize;
+            } else if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Kompres ke JPEG Base64
+            const base64Image = canvas.toDataURL("image/jpeg", 0.6);
+            
+            addScanToHistory({
+              id: `Scan #${Math.floor(1000 + Math.random() * 9000)}`,
+              status: finalStatusTitle,
+              brix: "N/A",
+              confidence: confidenceVal,
+              progress: Math.round(data.confidence), // Disimpan sebagai angka untuk style
+              badgeBg: (categoryInfo[mappedStatus]?.bg || "bg-gray-50").replace("50", "500/90"),
+              imgSrc: base64Image,
+              timestamp: new Date().toISOString()
+            });
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+
+      } else {
+        alert("Gagal memproses gambar dari server");
+      }
+    } catch (error) {
+      console.error("Error predicting:", error);
+      alert("Terjadi kesalahan jaringan saat memproses gambar.");
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -127,8 +207,8 @@ export default function DetectSection() {
                       <img src={preview} alt="Preview" className="w-full h-full object-cover rounded-[24px] shadow-lg" />
                       {loading && (
                         <div className="absolute inset-0 z-10 pointer-events-none rounded-[24px] overflow-hidden">
-                          <div className="w-full h-1 bg-[#f57c00] shadow-[0_0_15px_rgba(245,124,0,0.8)] absolute top-0 left-0 animate-[scan_2s_ease-in-out_infinite]"></div>
-                          <div className="w-full h-full bg-[#f57c00]/10 absolute top-0 left-0 animate-[pulse_2s_ease-in-out_infinite]"></div>
+                          <div className="w-full h-1 bg-[#f57c00] shadow-[0_0_15px_rgba(245,124,0,0.8)] absolute top-0 left-0 animate-scan"></div>
+                          <div className="w-full h-full bg-[#f57c00]/10 absolute top-0 left-0 animate-pulse"></div>
                         </div>
                       )}
                       <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/20 flex items-center gap-2 cursor-pointer z-20">

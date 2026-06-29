@@ -7,6 +7,12 @@ export const AppProvider = ({ children }) => {
     return localStorage.getItem('lang') || 'en';
   });
 
+  // State untuk menyimpan riwayat deteksi
+  const [scanHistory, setScanHistory] = useState(() => {
+    const saved = localStorage.getItem('scanHistory');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Ensure dark mode is completely removed if previously set
   useEffect(() => {
     const root = window.document.documentElement;
@@ -18,12 +24,28 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('lang', lang);
   }, [lang]);
 
+  // Persist history ke localStorage (terbatas 5MB)
+  useEffect(() => {
+    try {
+      localStorage.setItem('scanHistory', JSON.stringify(scanHistory));
+    } catch (e) {
+      console.warn("LocalStorage penuh, gagal menyimpan history", e);
+    }
+  }, [scanHistory]);
+
   const toggleLang = () => {
     setLang(prev => (prev === 'en' ? 'id' : 'en'));
   };
 
+  const addScanToHistory = (scanItem) => {
+    setScanHistory(prev => {
+      // Simpan max 5 scan terakhir agar LocalStorage tidak cepat penuh (error 5MB)
+      return [scanItem, ...prev].slice(0, 5);
+    });
+  };
+
   return (
-    <AppContext.Provider value={{ lang, toggleLang }}>
+    <AppContext.Provider value={{ lang, toggleLang, scanHistory, addScanToHistory }}>
       {children}
     </AppContext.Provider>
   );
