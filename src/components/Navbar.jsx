@@ -7,7 +7,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   const t = translations[lang].nav;
 
   const navLinks = [
@@ -50,10 +50,10 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 w-full z-50 flex justify-center px-4 pt-4 transition-all duration-500">
       <nav
-        className={`w-full max-w-5xl transition-all duration-500 ${scrolled
-            ? "bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border-white/60 dark:border-white/10"
-            : "bg-white/60 dark:bg-[#121212]/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-white/40 dark:border-white/5"
-          } rounded-full border-[1.5px]`}
+        className={`w-full max-w-6xl transition-all duration-500 ${scrolled
+          ? "bg-white dark:bg-[#1a1a1a] shadow-[0_10px_40px_rgba(150,73,0,0.12)] border-gray-200 dark:border-white/10"
+          : "bg-white dark:bg-[#121212] shadow-[0_8px_32px_rgba(150,73,0,0.08)] border-gray-200 dark:border-white/5"
+          } rounded-full border-2`}
       >
         <div className="flex justify-between items-center h-14 md:h-16 px-6 md:px-8">
           {/* Logo */}
@@ -70,8 +70,8 @@ export default function Navbar() {
                 key={id}
                 onClick={() => handleNavClick(id)}
                 className={`relative px-1 py-2 font-body-md text-sm md:text-base font-semibold transition-all duration-300 group ${activeSection === id
-                    ? "text-primary dark:text-[#ffb786]"
-                    : "text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white"
+                  ? "text-primary dark:text-[#ffb786]"
+                  : "text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white"
                   }`}
               >
                 {label}
@@ -83,7 +83,7 @@ export default function Navbar() {
 
           {/* Actions: Language */}
           <div className="hidden md:flex items-center gap-3">
-            <button 
+            <button
               onClick={toggleLang}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200 font-bold text-xs uppercase transition-colors"
             >
@@ -112,21 +112,21 @@ export default function Navbar() {
                 key={id}
                 onClick={() => handleNavClick(id)}
                 className={`w-full px-5 py-3 rounded-xl font-label-md text-left transition-all ${activeSection === id
-                    ? "bg-primary/10 text-primary dark:text-[#ffb786] dark:bg-white/10"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5"
+                  ? "bg-primary/10 text-primary dark:text-[#ffb786] dark:bg-white/10"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5"
                   }`}
               >
                 {label}
               </button>
             ))}
-            
+
             <div className="pt-4 mt-2 border-t border-gray-200 dark:border-white/10 flex justify-center gap-4">
-               <button 
-                 onClick={toggleLang}
-                 className="flex-1 py-3 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-200 font-bold text-sm uppercase"
-               >
-                 Language: {lang === 'en' ? 'English' : 'Indonesia'}
-               </button>
+              <button
+                onClick={toggleLang}
+                className="flex-1 py-3 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-200 font-bold text-sm uppercase"
+              >
+                Language: {lang === 'en' ? 'English' : 'Indonesia'}
+              </button>
             </div>
           </div>
         </div>
